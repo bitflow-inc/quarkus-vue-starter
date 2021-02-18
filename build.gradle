@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'io.quarkus' version "1.11.2.Final"
+}
+
+ext {
+	quarkusVersion = '1.11.2.Final'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven {
+		url = 'http://repo.maven.apache.org/maven2'
+	}
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar', '*.properties', '*.version'])
+	implementation enforcedPlatform("io.quarkus:quarkus-bom:$quarkusVersion")
+	implementation "io.quarkus:quarkus-hibernate-reactive:$quarkusVersion"
+	implementation "io.quarkus:quarkus-reactive-pg-client:$quarkusVersion"
+	implementation "io.quarkus:quarkus-vertx-web:$quarkusVersion"
+	testImplementation "io.quarkus:quarkus-junit5:$quarkusVersion"
+	testImplementation "io.rest-assured:rest-assured:4.3.3"
+	compileOnly 'org.projectlombok:lombok:1.18.18'
+	annotationProcessor 'org.projectlombok:lombok:1.18.18'
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+// processResources {
+//	exclude('static/SynapEditor/**/*')
+//}
+
+
+//test {
+	// useJUnitPlatform()
+	// exclude '**/*Test*'
+//}
+
+// check.dependsOn -= test
