@@ -1,10 +1,10 @@
 plugins {
 	id 'java'
-	id 'io.quarkus' version "1.11.2.Final"
+	id 'io.quarkus' version "1.12.0.Final"
 }
 
 ext {
-	quarkusVersion = '1.11.2.Final'
+	quarkusVersion = '1.12.0.Final'
 }
 
 repositories {
@@ -18,9 +18,15 @@ repositories {
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar', '*.properties', '*.version'])
 	implementation enforcedPlatform("io.quarkus:quarkus-bom:$quarkusVersion")
-	implementation "io.quarkus:quarkus-hibernate-reactive:$quarkusVersion"
-	implementation "io.quarkus:quarkus-reactive-pg-client:$quarkusVersion"
 	implementation "io.quarkus:quarkus-vertx-web:$quarkusVersion"
+	implementation "io.quarkus:quarkus-jdbc-h2:$quarkusVersion"
+	implementation "io.quarkus:quarkus-hibernate-orm-panache:$quarkusVersion"
+	implementation "io.quarkus:quarkus-resteasy-jsonb:$quarkusVersion"
+	implementation "io.quarkus:quarkus-smallrye-openapi:$quarkusVersion"
+	// implementation "io.quarkus:quarkus-hibernate-reactive:$quarkusVersion"
+	// implementation "io.quarkus:quarkus-reactive-pg-client:$quarkusVersion"
+	// implementation "io.quarkus:quarkus-jdbc-postgresql:$quarkusVersion"
+	testImplementation "io.quarkus:quarkus-test-h2:$quarkusVersion"
 	testImplementation "io.quarkus:quarkus-junit5:$quarkusVersion"
 	testImplementation "io.rest-assured:rest-assured:4.3.3"
 	compileOnly 'org.projectlombok:lombok:1.18.18'
